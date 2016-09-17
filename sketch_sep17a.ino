@@ -1,6 +1,7 @@
 int button1=0;
 int button2=0;
 int button3=0;
+int lightValue=0;
 
 void setup() {
     Serial.begin(9600);
@@ -9,6 +10,9 @@ void setup() {
   pinMode(13, INPUT);
   pinMode(12, INPUT);
   pinMode(8, INPUT);
+  
+  //Set up analog input
+  
 }
 
 void loop() {
@@ -16,6 +20,6 @@ void loop() {
   button1=digitalRead(13);
   button2=digitalRead(12);
   button3=digitalRead(8);
-
-  Serial.println(button1);
+  lightValue=analogRead(A0);
+  Serial.println(lightValue);
 }
