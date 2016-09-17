@@ -3,6 +3,7 @@ int button2=0;
 int button3=0;
 
 void setup() {
+    Serial.begin(9600);
   // put your setup code here, to run once:
   //Pushbutton inputs
   pinMode(13, INPUT);
@@ -16,5 +17,5 @@ void loop() {
   button2=digitalRead(12);
   button3=digitalRead(8);
 
-  printf("%d",button1);
+  Serial.println(button1);
 }
