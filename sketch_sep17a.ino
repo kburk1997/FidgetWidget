@@ -1,7 +1,13 @@
+#include <Wire.h>
+
 int button1=0;
 int button2=0;
 int button3=0;
-int lightValue=0;
+
+int number=0;
+int state=0;
+
+#define SLAVE_ADDRESS 0x04
 
 void setup() {
     Serial.begin(9600);
@@ -11,8 +17,15 @@ void setup() {
   pinMode(12, INPUT);
   pinMode(8, INPUT);
   
-  //Set up analog input
+  //initialize i2c as slave
+  Wire.begin(SLAVE_ADDRESS);
   
+  //define callbacks for i2c
+  
+  Wire.onReceive(receiveData);
+  Wire.onRequest(sendData);
+  
+  Serial.println("Ready");
 }
 
 void loop() {
@@ -20,6 +33,27 @@ void loop() {
   button1=digitalRead(13);
   button2=digitalRead(12);
   button3=digitalRead(8);
-  lightValue=analogRead(A0);
-  Serial.println(lightValue);
+
+  Serial.println(button1);
+}
+
+void receiveData(int byteCount){
+  while(Wire.available()){
+    number=Wire.read();
+    Serial.print("data received: ");
+    Serial.println(number);
+    
+    if(number==1){
+      if (state==0){
+        state=1;
+      }
+      else{
+        state=0;
+      }
+    }
+  }
+}
+
+void sendData(){
+  Wire.write(number);
 }
