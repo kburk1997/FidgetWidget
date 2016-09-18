@@ -3,18 +3,12 @@ import smbus
 import time
 import RPi.GPIO as GPIO
 from Tkinter import *
+import webbrowser
 
 WINDOW_W=700
 WINDOW_H=500
 
 BLUE='#a6def2'
-
-def createDisplay():
-	global tk
-	tk=Tk()
-	canvas=Canvas(tk, width=WINDOW_W, height=WINDOW_H, background=BLUE)
-	canvas.pack()
-	tk.mainloop()
 
 # for RPI version 1, use “bus = smbus.SMBus(0)”
 bus = smbus.SMBus(1)
@@ -49,11 +43,30 @@ def readNumber():
 	return number
 	
 def LDR():
+	global tk, canvas
+	print "LDR"
+	createDisplay("wave.gif")
+	check()
 	return	
 def button():
+	createDisplay("spiral.gif")
+	check()
 	return
 
-createDisplay()
+def check():
+	if(GPIO.input(4)):
+		#change color
+		print "LDR Procedure"
+		LDR()
+	#otherwise, check buttons
+	if(not GPIO.input(18) or not GPIO.input(23) or not GPIO.input(24)):
+		#go to button procedure
+		print "Button procedure"
+		button()
+def createDisplay(picture):
+	webbrowser.open(picture)
+	while(GPIO.input(4) or not GPIO.input(18) or not GPIO.input(23) or not GPIO.input(24)):
+		pass
 
 while True:
 	#Receive input from arduino
@@ -67,15 +80,8 @@ while True:
 	print GPIO.input(4)
 	
 	#if above threshold, start
-	if(GPIO.input(4)):
-		#change color
-		print "LDR Procedure"
-		LDR()
-	#otherwise, check buttons
-	if(!GPIO.input(18) || !GPIO.input(23) || !GPIO.input(24)):
-		#go to button procedure
-		print "Button procedure"
-		button()
+
+	
 	time.sleep(0.5)
 	
 def terminate():
