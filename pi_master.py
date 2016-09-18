@@ -1,5 +1,19 @@
+import subprocess
 import smbus
 import time
+import RPi.GPIO as GPIO
+from Tkinter import *
+
+WINDOW_W=500
+WINDOW_H=100
+
+def createDisplay():
+	global tk
+	tk=Tk()
+	canvas=Canvas(tk, width=WINDOW_W, height=WINDOW_H)
+	canvas.pack()
+	tk.mainloop()
+
 # for RPI version 1, use “bus = smbus.SMBus(0)”
 bus = smbus.SMBus(1)
 
