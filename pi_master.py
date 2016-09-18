@@ -4,13 +4,15 @@ import time
 import RPi.GPIO as GPIO
 from Tkinter import *
 
-WINDOW_W=500
-WINDOW_H=100
+WINDOW_W=700
+WINDOW_H=500
+
+BLUE='#a6def2'
 
 def createDisplay():
 	global tk
 	tk=Tk()
-	canvas=Canvas(tk, width=WINDOW_W, height=WINDOW_H)
+	canvas=Canvas(tk, width=WINDOW_W, height=WINDOW_H, background=BLUE)
 	canvas.pack()
 	tk.mainloop()
 
@@ -53,3 +55,7 @@ while True:
 	print GPIO.input(23)
 	print GPIO.input(24)
 	time.sleep(1)
+	
+def terminate():
+	global tk
+	tk.destroy()
