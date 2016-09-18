@@ -7,12 +7,20 @@ bus = smbus.SMBus(1)
 address = 0x04
 
 def writeNumber(value):
-	bus.write_byte(address, value)
+	#'Hacky' fix for IOError
+	try:
+		bus.write_byte(address, value)
+	except IOError:
+		subprocess.call(['i2cdetect','-y','1'])
 	# bus.write_byte_data(address, 0, value)
 	return -1
 
 def readNumber():
-	number = bus.read_byte(address)
+	number=0
+	try:
+		number = bus.read_byte(address)
+	except IOError:
+		subprocess.call(['i2cdetect','-y','1'])
 	# number = bus.read_byte_data(address, 1)
 	return number
 
