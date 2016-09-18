@@ -1,12 +1,13 @@
 #include <Wire.h>
 
-int button1=0;
+/*int button1=0;
 int button2=0;
-int button3=0;
+int button3=0;*/
 
 int lightValue=500;
 
 int number=0;
+int number2=112;
 int state=0;
 
 #define SLAVE_ADDRESS 0x04
@@ -15,9 +16,9 @@ void setup() {
     Serial.begin(9600);
   // put your setup code here, to run once:
   //Pushbutton inputs
-  pinMode(13, INPUT);
+  /*pinMode(13, INPUT);
   pinMode(12, INPUT);
-  pinMode(8, INPUT);
+  pinMode(8, INPUT);*/
   
   //initialize i2c as slave
   Wire.begin(SLAVE_ADDRESS);
@@ -32,28 +33,38 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  button1=digitalRead(13);
+  /*button1=digitalRead(13);
   button2=digitalRead(12);
   button3=digitalRead(8);
 
   Serial.println(button1);
-  
-  //Send button1
-  if(!button1 || !button2 || !button3){
-    number=0;
-    sendData();
-    //Wait until all buttons are released
-    while(!button1 || !button2 || !button3){
-    }
-  }
+  Serial.println(button2);
+  Serial.println(button3);  */
+
   
   lightValue=analogRead(A0);
+  
+  Serial.println(lightValue);
   if(lightValue <450 || lightValue >550){
-   number=lightValue/100;
-    sendData(); 
+   number=lightValue>>2;
+   Serial.println(number);
+    sendData();
   }
   
   //
+  
+    //Send button1
+  /*if(!button1 || !button2 || !button3){
+    number=0;
+    Wire.write(number);
+    
+    //Wait until all buttons are released
+    while(!button1 || !button2 || !button3){
+      number=0;
+    }
+    
+    Wire.write(number);
+  }*/
 }
 
 void receiveData(int byteCount){
