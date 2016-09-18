@@ -69,10 +69,12 @@ while True:
 	#if above threshold, start
 	if(GPIO.input(4)):
 		#change color
+		print "LDR Procedure"
 		LDR()
 	#otherwise, check buttons
 	if(!GPIO.input(18) || !GPIO.input(23) || !GPIO.input(24)):
 		#go to button procedure
+		print "Button procedure"
 		button()
 	time.sleep(0.5)
 	
