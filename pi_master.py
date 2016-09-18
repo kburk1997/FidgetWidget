@@ -22,6 +22,7 @@ bus = smbus.SMBus(1)
 #Setup GPIO
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(4, GPIO.IN)
 GPIO.setup(18, GPIO.IN)
 GPIO.setup(23, GPIO.IN)
 GPIO.setup(24, GPIO.IN)
@@ -46,6 +47,13 @@ def readNumber():
 		subprocess.call(['i2cdetect','-y','1'])
 	# number = bus.read_byte_data(address, 1)
 	return number
+	
+def LDR():
+	return	
+def button():
+	return
+
+createDisplay()
 
 while True:
 	#Receive input from arduino
@@ -54,7 +62,19 @@ while True:
 	print GPIO.input(18)
 	print GPIO.input(23)
 	print GPIO.input(24)
-	time.sleep(1)
+	
+	#Read in the 4
+	print GPIO.input(4)
+	
+	#if above threshold, start
+	if(GPIO.input(4)):
+		#change color
+		LDR()
+	#otherwise, check buttons
+	if(!GPIO.input(18) || !GPIO.input(23) || !GPIO.input(24)):
+		#go to button procedure
+		button()
+	time.sleep(0.5)
 	
 def terminate():
 	global tk
