@@ -35,6 +35,17 @@ void loop() {
   button3=digitalRead(8);
 
   Serial.println(button1);
+  
+  //Send button1
+  if(!button1 || !button2 || !button3){
+    number=0;
+    sendData();
+    //Wait until all buttons are released
+    while(!button1 || !button2 || !button3){
+    }
+  }
+  
+  //
 }
 
 void receiveData(int byteCount){
