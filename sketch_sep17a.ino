@@ -45,6 +45,12 @@ void loop() {
     }
   }
   
+  lightValue=analogRead(A0);
+  if(lightValue <450 || lightValue >550){
+   number=lightValue/100;
+    sendData(); 
+  }
+  
   //
 }
 
