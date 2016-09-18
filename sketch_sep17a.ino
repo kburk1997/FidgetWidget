@@ -4,6 +4,8 @@ int button1=0;
 int button2=0;
 int button3=0;
 
+int lightValue=500;
+
 int number=0;
 int state=0;
 
