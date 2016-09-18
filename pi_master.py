@@ -3,6 +3,13 @@ import time
 # for RPI version 1, use “bus = smbus.SMBus(0)”
 bus = smbus.SMBus(1)
 
+#Setup GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.IN)
+GPIO.setup(23, GPIO.IN)
+GPIO.setup(24, GPIO.IN)
+
 # This is the address we setup in the Arduino Program
 address = 0x04
 
@@ -28,4 +35,7 @@ while True:
 	#Receive input from arduino
 	number = readNumber()
 	print number
+	print GPIO.input(18)
+	print GPIO.input(23)
+	print GPIO.input(24)
 	time.sleep(1)
