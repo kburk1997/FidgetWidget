@@ -25,14 +25,7 @@ def readNumber():
 	return number
 
 while True:
-	var = input(“Enter 1 – 9: “)
-	if not var:
-		continue
-	writeNumber(var)
-	print “RPI: Hi Arduino, I sent you “, var
-	# sleep one second
-	time.sleep(1)
-
+	#Receive input from arduino
 	number = readNumber()
-	print “Arduino: Hey RPI, I received a digit “, number
-	print
+	print number
+	time.sleep(1)
