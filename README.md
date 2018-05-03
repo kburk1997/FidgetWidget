@@ -3,7 +3,7 @@ A hardware hack designed to allow a safe, interactive stimming experience for bo
 
 Created at HackMIT 2016 by Kathleen Burkhardt and Jeremy Hong
 
-##What is stimming?
+## What is stimming?
 
 According to Wikipedia:
 
@@ -11,7 +11,7 @@ According to Wikipedia:
 
 This project was built to show that stimming is a natural and calming experience.
 
-##Setup
+## Setup
 
 To set up your own FidgetWidget, you will need:
 
@@ -26,6 +26,10 @@ To set up your own FidgetWidget, you will need:
 * Raspberry Pi monitor
 
 See the circuit schematic [temporarily unavailable] for details on how to assemble the circuit.
+
+The gist:
+- When any of the three buttons are pressed, one calming GIF will show up.
+- When your hands are moved towards and away from the LDR, another calming GIF will show up.
 
 Once the circuit is assembled, run the code on the Arduino and the Raspberry Pi.
 
