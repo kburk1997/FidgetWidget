@@ -25,7 +25,7 @@ To set up your own FidgetWidget, you will need:
 * Raspberry Pi
 * Raspberry Pi monitor
 
-See the circuit schematic for details on how to assemble the circuit.
+See the circuit schematic [temporarily unavailable] for details on how to assemble the circuit.
 
 Once the circuit is assembled, run the code on the Arduino and the Raspberry Pi.
 
